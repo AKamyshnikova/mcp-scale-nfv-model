@@ -117,6 +117,9 @@ parameters:
     openstack_gateway_node01_tenant_address: 10.0.2.6
     openstack_gateway_node02_tenant_address: 10.0.2.7
     openstack_gateway_node03_tenant_address: 10.0.2.8
+    openstack_gateway_node01_deploy_address: 10.10.57.45
+    openstack_gateway_node02_deploy_address: 10.10.57.32
+    openstack_gateway_node03_deploy_address: 10.10.57.116
 
     # OpenStack Compute
     openstack_compute_rack01_single_subnet: 10.3.62

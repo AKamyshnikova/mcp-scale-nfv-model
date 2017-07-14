@@ -78,6 +78,37 @@ parameters:
         openstack_proxy_node01:
           params:
             linux_system_codename: xenial
+        openstack_gateway_node01:
+          name: gtw01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.gateway
+          params:
+            salt_master_host:  ${_param:reclass_config_master}
+            single_address: ${_param:openstack_gateway_node01_address}
+            tenant_address: ${_param:openstack_gateway_node01_tenant_address}
+            deploy_address: ${_param:openstack_gateway_node01_deploy_address}
+            linux_system_codename: xenial
+        openstack_gateway_node02:
+          name: gtw02
+          domain: ${_param:cluster_domain}
+          params:
+            salt_master_host:  ${_param:reclass_config_master}
+            single_address: ${_param:openstack_gateway_node02_address}
+            tenant_address: ${_param:openstack_gateway_node02_tenant_address}
+            deploy_address: ${_param:openstack_gateway_node02_deploy_address}
+            linux_system_codename: xenial
+        openstack_gateway_node03:
+          name: gtw03
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.openstack.gateway
+          params:
+            salt_master_host:  ${_param:reclass_config_master}
+            single_address: ${_param:openstack_gateway_node03_address}
+            tenant_address: ${_param:openstack_gateway_node03_tenant_address}
+            deploy_address: ${_param:openstack_gateway_node03_deploy_address}
+            linux_system_codename: xenial
         openstack_compute_rack01:
           name: ${_param:openstack_compute_rack01_hostname}<<count>>
           domain: ${_param:cluster_domain}
@@ -90,10 +121,13 @@ parameters:
             params:
               single_address:
                 value: ${_param:openstack_compute_rack01_single_subnet}.<<count>>
-                start: 101
+                start: 10
               tenant_address:
                 value: ${_param:openstack_compute_rack01_tenant_subnet}.<<count>>
-                start: 101
+                start: 10
+              deploy_address:
+                value: ${_param:openstack_compute_rack01_deploy_subnet}.<<count>>
+                start: 10
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
