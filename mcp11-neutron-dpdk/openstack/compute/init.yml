@@ -20,8 +20,18 @@ parameters:
     cluster_node03_hostname: ${_param:openstack_control_node03_hostname}
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: https://${_param:cluster_public_host}:6080
-    primary_first_nic: eth1
-    primary_second_nic: eth2
+    primary_first_nic: eth0
+    primary_second_nic: eth1
+    dpdk0_name: eth2
+    dpdk1_name: eth3
+    dpdk0_pci: '0000:81:00.0'
+    dpdk1_pci: '0000:81:00.1'
+    compute_dpdk_driver: uio
+    ovs_pmd_cpu_mask: ${_param:compute_ovs_pmd_cpu_mask}
+    ovs_dpdk_socket_mem: ${_param:compute_ovs_dpdk_socket_mem}
+    ovs_dpdk_lcore_mask: ${_param:compute_ovs_dpdk_lcore_mask}
+    compute_ovs_memory_channels: "2"
+
 
   linux:
     network:
@@ -32,3 +42,83 @@ parameters:
           - ${linux:network:hostname}
           - ${linux:network:fqdn}
       interface:
+        dpdk0:
+          name: ${_param:dpdk0_name}
+          pci: ${_param:dpdk0_pci}
+          driver: igb_uio
+          bond: dpdkbond1
+          enabled: true
+          type: dpdk_ovs_port
+          n_rxq: 2
+        dpdk1:
+          name: ${_param:dpdk1_name}
+          pci: ${_param:dpdk1_pci}
+          driver: igb_uio
+          bond: dpdkbond1
+          enabled: true
+          type: dpdk_ovs_port
+          n_rxq: 2
+        dpdkbond1:
+          enabled: true
+          bridge: br-prv
+          type: dpdk_ovs_bond
+          mode: active-backup
+        br-prv:
+          enabled: true
+          type: dpdk_ovs_bridge
+        eth0:
+          enabled: true
+          type: slave
+          proto: manual
+          name: ${_param:primary_first_nic}
+          master: bond0
+        eth1:
+          enabled: true
+          type: slave
+          proto: manual
+          name: ${_param:primary_second_nic}
+          master: bond0
+        bond0:
+          enabled: true
+          proto: manual
+          type: bond
+          use_interfaces:
+          - ${_param:primary_second_nic}
+          - ${_param:primary_first_nic}
+          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
+          mode: 802.3ad
+        bond0.1:
+          name: bond0.${_param:control_vlan}
+          enabled: true
+          type: vlan
+          proto: static
+          address: ${_param:single_address}
+          netmask: ${_param:control_network_netmask}
+          use_interfaces:
+          - bond0
+        bond0.2:
+          name: bond0.${_param:tenant_vlan}
+          enabled: true
+          type: vlan
+          proto: manual
+          use_interfaces:
+          - bond0
+        br-deploy:
+          enabled: true
+          type: bridge
+          address: ${_param:deploy_address}
+          netmask: 255.255.0.0
+          gateway: 10.10.0.52
+          name_servers:
+            - 8.8.8.8
+            - 8.8.4.4
+          use_interfaces:
+          - bond0
+        br-mesh:
+          enabled: true
+          type: bridge
+          address: ${_param:tenant_address}
+          netmask: ${_param:tenant_network_netmask}
+          use_interfaces:
+          - bond0.${_param:tenant_vlan}
+      bridge: openvswitch

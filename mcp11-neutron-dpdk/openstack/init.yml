@@ -91,36 +91,38 @@ parameters:
     salt_pki_proxy_alt_names: IP:${_param:cluster_public_host},DNS:${_param:cluster_public_host},IP:${_param:openstack_proxy_address},DNS:horizon.${_param:cluster_domain}
     
     # openstack service addresses
-    openstack_proxy_address: 10.167.4.80
-    openstack_proxy_node01_address: 10.167.4.81
-    openstack_proxy_node02_address: 10.167.4.82
-    openstack_control_address: 10.167.4.10
-    openstack_control_node01_address: 10.167.4.11
-    openstack_control_node02_address: 10.167.4.12
-    openstack_control_node03_address: 10.167.4.13
-    openstack_database_address: 10.167.4.50
-    openstack_database_node01_address: 10.167.4.51
-    openstack_database_node02_address: 10.167.4.52
-    openstack_database_node03_address: 10.167.4.53
-    openstack_message_queue_address: 10.167.4.40
-    openstack_message_queue_node01_address: 10.167.4.41
-    openstack_message_queue_node02_address: 10.167.4.42
-    openstack_message_queue_node03_address: 10.167.4.43
+    openstack_proxy_address: 10.3.63.240
+    openstack_proxy_node01_address: 10.3.63.240
+    openstack_proxy_node02_address: 10.3.63.241
+    openstack_control_address: 10.3.63.230
+    openstack_control_node01_address: 10.3.63.231
+    openstack_control_node02_address: 10.3.63.232
+    openstack_control_node03_address: 10.3.63.233
+    openstack_database_address: 10.3.63.234
+    openstack_database_node01_address: 10.3.63.235
+    openstack_database_node02_address: 10.3.63.236
+    openstack_database_node03_address: 10.3.63.237
+    openstack_message_queue_address: 10.3.63.250
+    openstack_message_queue_node01_address: 10.3.63.251
+    openstack_message_queue_node02_address: 10.3.63.252
+    openstack_message_queue_node03_address: 10.3.63.253
 
     openstack_telemetry_address: 10.167.4.75
     openstack_telemetry_node01_address: 10.167.4.76
     openstack_telemetry_node02_address: 10.167.4.77
     openstack_telemetry_node03_address: 10.167.4.78
-    openstack_gateway_node01_address: 10.167.4.224
-    openstack_gateway_node02_address: 10.167.4.225
-    openstack_gateway_node03_address: 10.167.4.226
-    openstack_gateway_node01_tenant_address: 10.167.6.6
-    openstack_gateway_node02_tenant_address: 10.167.6.7
-    openstack_gateway_node03_tenant_address: 10.167.6.8
+    openstack_gateway_node01_address: 10.3.61.80
+    openstack_gateway_node02_address: 10.3.61.82
+    openstack_gateway_node03_address: 10.3.61.90
+    openstack_gateway_node01_tenant_address: 10.0.2.6
+    openstack_gateway_node02_tenant_address: 10.0.2.7
+    openstack_gateway_node03_tenant_address: 10.0.2.8
 
     # OpenStack Compute
-    openstack_compute_rack01_single_subnet: 10.167.4
-    openstack_compute_rack01_tenant_subnet: 10.167.6
+    openstack_compute_rack01_single_subnet: 10.3.62
+    openstack_compute_rack01_tenant_subnet: 10.0.2
+    openstack_compute_rack01_deploy_subnet: 10.10.2
+
     openstack_compute_rack01_hostname: cmp
 
     # openstack service hostnames

@@ -12,25 +12,37 @@ parameters:
 
     linux_system_codename: xenial
     keepalived_vip_interface: br-ctl
-    keepalived_vip_virtual_router_id: 70
-    primary_first_nic: eth1
-    primary_second_nic: eth2
+    keepalived_vip_virtual_router_id: 130
+    primary_first_nic: eth0
+    primary_second_nic: eth1
+    primary_third_nic: eth2
+    primary_fourth_nic: eth3
   linux:
     network:
       bridge: openvswitch
       interface:
-        eth1:
+        eth0:
           enabled: true
           type: slave
           proto: manual
           name: ${_param:primary_first_nic}
           master: bond0
-        eth2:
+        eth1:
           enabled: true
           type: slave
           proto: manual
           name: ${_param:primary_second_nic}
           master: bond0
+        eth2:
+          enabled: true
+          type: eth
+          proto: manual
+          name: ${_param:primary_third_nic}
+        eth3:
+          enabled: true
+          type: eth
+          proto: manual
+          name: ${_param:primary_fourth_nic}
         bond0:
           enabled: true
           proto: manual
@@ -53,6 +65,23 @@ parameters:
           ovs_options: tag=${_param:control_vlan}
           address: ${_param:single_address}
           netmask: ${_param:control_network_netmask}
+        br-mesh:
+          enabled: true
+          type: ovs_port
+          bridge: br-floating
+          proto: static
+          ovs_options: tag=${_param:tenant_vlan}
+          address: ${_param:tenant_address}
+          netmask: ${_param:tenant_network_netmask}
+        br_gtw:
+          enabled: true
+          type: ovs_port
+          bridge: br-floating
+          proto: static
+          ovs_options: tag=131
+          address: ${_param:deploy_address}
+          gateway: ${_param:deploy_network_gateway}
+          netmask: ${_param:deploy_network_netmask}
         br-prv:
           enabled: true
           type: ovs_bridge

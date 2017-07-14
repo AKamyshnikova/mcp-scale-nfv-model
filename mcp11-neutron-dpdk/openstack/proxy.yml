@@ -20,7 +20,7 @@ classes:
 parameters:
   _param:
     keepalived_vip_interface: ens3
-    keepalived_vip_virtual_router_id: 241
+    keepalived_vip_virtual_router_id: 150
     nginx_proxy_ssl:
       enabled: true
       authority: ${_param:salt_minion_ca_authority}
