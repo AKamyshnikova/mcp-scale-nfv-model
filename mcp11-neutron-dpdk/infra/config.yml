@@ -12,14 +12,11 @@ classes:
 - system.reclass.storage.salt
 - system.xtrabackup.server.single
 - system.reclass.storage.system.physical_control_cluster
-- system.reclass.storage.system.infra_maas_single
 - system.reclass.storage.system.openstack_gateway_cluster
 - system.reclass.storage.system.openstack_control_cluster
 - system.reclass.storage.system.openstack_proxy_cluster
 - system.reclass.storage.system.openstack_database_cluster
 - system.reclass.storage.system.openstack_message_queue_cluster
-- system.reclass.storage.system.openstack_telemetry_cluster
-- system.reclass.storage.system.openstack_benchmark_single
 - cluster.mcp11-neutron-dpdk.infra
 parameters:
   _param:
