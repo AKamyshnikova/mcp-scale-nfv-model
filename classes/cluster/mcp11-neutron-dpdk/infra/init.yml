@@ -5,6 +5,7 @@ classes:
 - system.openssh.server.team.mcp_qa
 - system.openssh.server.team.networking
 - system.openssh.server.team.qa_scale
+- cluster.mcp11-neutron-dpdk._team
 - cluster.mcp11-neutron-dpdk.openstack
 
 parameters:
@@ -101,12 +102,12 @@ parameters:
       service:
         apt-daily.timer:
           status: dead
-      user:
-        root:
-          enabled: true
-          name: root
-          home: /root
-          # Password is cloudlab, comment out, configure your SSH key bellow
-          # and disable password auth
-          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
+#      user:
+#        root:
+#          enabled: true
+#          name: root
+#          home: /root
+#          # Password is cloudlab, comment out, configure your SSH key bellow
+#          # and disable password auth
+#          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
 

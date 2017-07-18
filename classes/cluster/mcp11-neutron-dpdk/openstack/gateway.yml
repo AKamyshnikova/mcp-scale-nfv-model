@@ -97,12 +97,12 @@ parameters:
           port_type: patch
           bridge: br-prv
           peer: floating-to-prv
-    system:
-      user:
-        root:
-          enabled: true
-          name: root
-          home: /root
-          # Password is cloudlab, comment out, configure your SSH key bellow
-          # and disable password auth
-          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
+#    system:
+#      user:
+#        root:
+#          enabled: true
+#          name: root
+#          home: /root
+#          # Password is cloudlab, comment out, configure your SSH key bellow
+#          # and disable password auth
+#          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
